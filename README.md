@@ -19,7 +19,7 @@ Note: Wherever you need to log to wandb, please remember to change the name of t
 
 ### Link to the project report:
 
----->
+https://wandb.ai/ee17b154tony/dl_assignment_3/reports/CS6910-Assignment-3-Report--Vmlldzo2NzU5MzI
 
 ### General Framework:
 
@@ -60,6 +60,10 @@ input_embedding_size: Dimenions of the vector to represent each character
 
 dropout_fraction: fraction of neurons to drop out
 
+The best model obtained was:
+
+![image](https://user-images.githubusercontent.com/62587866/118363816-c8594880-b5b3-11eb-9a53-861e4167b793.png)
+
 `
 prepare_inference_model_lstm_1(model, num_cells)
 `
@@ -95,10 +99,16 @@ transliterate_word_rnngru_attn_out(input_word,encoder_model,decoder_model)
 `
 : Decodes the given input word, one character at a time. Returns the attention maps for that word. The encoder-decoder models must be RNN/GRU
 
+The Attention matrices are:
+
+![image](https://user-images.githubusercontent.com/62587866/118363981-4fa6bc00-b5b4-11eb-8d85-a877ee582dfd.png)
+
+
 ### Attention Seq2Seq model other utilities:
 This part contains the unused transliterate_word_lstm_attn_out function and a code that takes in the attention maps,the input and target words and produces a .gif for connectivity visualisation.
 
-The gifs are present in a zip file
+The gifs are present in a zip file. 
+
 `
 transliterate_word_lstm_attn_out(input_word,encoder_model,decoder_model)
 `
