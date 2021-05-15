@@ -26,6 +26,68 @@ https://wandb.ai/ee17b154tony/dl_assignment_3/reports/CS6910-Assignment-3-Report
 ALl our notebooks have been created in Google Colab with a GPU backend. We have used TensorFlow and Keras for defining, training and testing our model.
 
 ### Vanilla Seq2Seq model:
+`
+extract_data_info(data_dict)
+`
+: Returns important information about the data like input characters, target characters,maximum sequence lengths etc
+
+`
+make_one_hot_arrays(data_dict, max_encoder_seq_length, max_decoder_seq_length, num_input_tokens, num_target_tokens)
+`
+: This function takes the training/validation/test dictionary as input and produces the one-hot encoded versions of the respective data.
+
+`
+define_model(num_cells, cell_type, num_encoder_layers, num_decoder_layers, input_embedding_size, dropout_fraction)
+`
+: Defines a vanilla encoder-decoder model using the following hyperparameters. 
+
+num_cells: Number of cells in the encoder and decoder layers
+
+cell_type: choice of cell type: Simple RNN, LSTM, GRU
+
+num_encoder_layers: Number of layers in the encoder
+
+num_decoder_layers: Number of layers in the decoder
+
+input_embedding_size: Dimenions of the vector to represent each character
+
+dropout_fraction: fraction of neurons to drop out
+
+The best model obtained was:
+
+![image](https://user-images.githubusercontent.com/38160688/118371034-28f28080-b5c8-11eb-8529-401e3c9cb152.png)
+
+`
+prepare_inference_model_lstm_2(model, num_cells)
+`
+: Takes in a model that has the cell_type = 'LSTM' and converts into an inference model. ie it reorders the connections of a model defined by the above function and trained using teacher forcing. returns the dismantled encoder and the decoder
+
+`
+transliterate_word_lstm_2(input_words, encoder_model, decoder_model)
+`
+: Decodes the given input sequence in batches using the encoder and the decoder models returned by prepare_inference_model_lstm_2
+
+`
+prepare_inference_model_rnngru_2(model, num_cells)
+`
+: Takes in a model that has the cell_type = 'RNN' or 'GRU' and converts into an inference model. ie it reorders the connections of a model defined by the above function and trained using teacher forcing. returns the dismantled encoder and the decoder
+
+`
+transliterate_word_rnngru_2(input_words, encoder_model, decoder_model)
+`
+: Decodes the given input sequence in batches using the encoder and the decoder models returned by prepare_inference_model_rnngru_2
+
+`
+train_with_wandb()
+`
+: Trains, validates the model on the data and logs the accuracies and losses into wandb. The characterwise validation accuracy with teacher forcing is logged per epoch. The inference validation accuracy without teacher forcing is logged after the complete training phase.
+
+`
+train(num_cells, cell_type, num_layers, input_embedding_size, dropout_fraction)
+`
+: Trains and validates the model on the data. The characterwise validation accuracy with teacher forcing is plotted per epoch. The inference validation accuracy without teacher forcing is printed after the complete training phase.
+
+
 ### Attention Seq2Seq model:
 
 `
