@@ -174,7 +174,7 @@ The gifs are present in a zip file.
 `
 transliterate_word_lstm_attn_out(input_word,encoder_model,decoder_model)
 `
-: Decodes the given input word, one character at a time. Returns the attention maps for that word. The encoder-decoder models must be LSTM
+: Decodes the given input word one character at a time. Returns the attention maps for that word. The encoder-decoder models must be LSTM
 
 
 
